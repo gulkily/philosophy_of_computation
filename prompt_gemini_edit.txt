@@ -1,0 +1,5 @@
+Hi Gemini. I've been writing a book with Claude, and below is its outline. In the next prompt, I'm going to provide you with a chapter draft, and I want your feedback on it, OK?
+
+You have already edited Chapters: 11, 19, 10, 1, 2, 3, 13, 14, 5, 12, 17, 4, 6, 8, 9, 15, 16, 7, 20, 18
+
+Please choose another chapter to edit, and I'll paste it to you.

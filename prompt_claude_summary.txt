@@ -1,0 +1,1 @@
+Please generate a hyper-compressed 1-paragraph present-tense summary of this chapter that I can include in following prompts, so that the book remains cohesive. Add a second paragraph that summarizes the jokes in the chapter, so that they can be played with later.

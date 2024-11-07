@@ -1,0 +1,33 @@
+# Philosophy of Computation
+## Table of Contents
+
+### Part I: Foundations and Metamathematics
+1. The Platonic Machine: Abstract Computation and Mathematical Reality
+2. Incompleteness and the Limits of Formal Systems: From Gödel to Chaitin
+3. The Church-Turing Thesis Revisited: Hypercomputation and the Boundaries of the Computable
+4. Type Theory as Foundational Logic: From Russell to Martin-Löf
+
+### Part II: Mind, Mathematics, and Machine
+5. Computational Theories of Consciousness: From Integrated Information to Global Workspace
+6. Mathematical Intuition and Machine Learning: The Nature of Mathematical Knowledge
+7. The Quantum Mind-Computer Interface: Penrose-Lucas Arguments Reconsidered
+8. Computational Complexity as Philosophy: P=NP as a Metaphysical Question
+
+### Part III: Information and Reality
+9. Digital Physics and Computational Universes: Wheeler's "It from Bit" Thesis
+10. The Computational Theory of Mind: Beyond the Chinese Room
+11. Quantum Computing and Modal Realism: Computing Across Possible Worlds
+12. Information Entropy and the Arrow of Time: Algorithmic Thermodynamics
+
+### Part IV: Ethics and Society
+13. The Ethics of Artificial Minds: Rights, Responsibilities, and Digital Sentience
+14. Computational Justice: Algorithmic Decision-Making and Fairness
+15. Digital Immortality: Mind Uploading and the Philosophy of Personal Identity
+16. The Social Contract in the Age of Artificial Intelligence
+
+### Part V: Advanced Horizons
+17. Beyond Silicon: Biological and Chemical Computation
+18. Computational Emergence and Downward Causation
+19. The Mathematics of Consciousness: Integrated Information Theory and Beyond
+20. Computational Platonism: Code as Ultimate Reality
+21. The Future of Thought: Post-Human Intelligence and the Omega Point
