@@ -27,13 +27,13 @@ def apply_photocopy_effect(input_pdf_path, output_pdf_path):
 	def simulate_page_curl(image, binding_side):
 		width, height = image.size
 		displacement = np.zeros((height, width, 2), dtype=np.float32)
-		max_curl = width * 0.01
-		for y in range(height):
-			curl = max_curl * np.sin(np.pi * y / height)
+		max_curl = height * 0.01  # Vertical curl effect
+		for x in range(width):
+			curl = max_curl * np.sin(np.pi * x / width)
 			if binding_side == 'left':
-				displacement[y, :, 0] += curl
+				displacement[:, x, 1] += curl  # Apply to y-coordinates
 			else:
-				displacement[y, :, 0] -= curl
+				displacement[:, x, 1] -= curl  # Apply to y-coordinates
 		arr = np.array(image)
 		coords = np.indices((height, width), dtype=np.float32)
 		coords[0] += displacement[:, :, 1]
@@ -49,12 +49,13 @@ def apply_photocopy_effect(input_pdf_path, output_pdf_path):
 		mask = Image.new('L', (width, height), 255)
 		draw = ImageDraw.Draw(mask)
 		radius = width * 0.03
+		# Add corner rounding on both top and bottom of binding side
 		if binding_side == 'left':
 			draw.pieslice([0, 0, 2 * radius, 2 * radius], 180, 270, fill=0)
-			draw.rectangle([0, height - radius, radius, height], fill=0)
+			draw.pieslice([0, height - 2 * radius, 2 * radius, height], 90, 180, fill=0)
 		else:
 			draw.pieslice([width - 2 * radius, 0, width, 2 * radius], 270, 360, fill=0)
-			draw.rectangle([width - radius, height - radius, width, height], fill=0)
+			draw.pieslice([width - 2 * radius, height - 2 * radius, width, height], 0, 90, fill=0)
 		image.putalpha(mask)
 		image = image.convert('L')
 		return image
@@ -69,18 +70,22 @@ def apply_photocopy_effect(input_pdf_path, output_pdf_path):
 			draw.rectangle([i, i, width - i - 1, height - i - 1], outline=shade)
 		edge_mask_blurred = edge_mask.filter(ImageFilter.GaussianBlur(radius=edge_width / 2))
 		image = ImageChops.multiply(image, edge_mask_blurred)
+		
+		# Enhanced shadow effect on binding side
 		shadow = Image.new('L', (width, height), color=255)
 		draw_shadow = ImageDraw.Draw(shadow)
-		max_shadow = 200
-		shadow_gradient = Image.new('L', (edge_width * 2, height), color=255)
-		for x in range(edge_width * 2):
-			alpha = int(255 - (255 * (x / (edge_width * 2))))
+		shadow_width = edge_width * 3  # Wider shadow
+		shadow_gradient = Image.new('L', (shadow_width, height), color=255)
+		for x in range(shadow_width):
+			alpha = int(255 - (255 * (x / shadow_width) ** 0.8))  # More pronounced gradient
 			draw_shadow.line([(x, 0), (x, height)], fill=alpha)
+		
 		if binding_side == 'left':
 			shadow.paste(shadow_gradient, (0, 0))
 		else:
 			shadow_gradient = shadow_gradient.transpose(Image.FLIP_LEFT_RIGHT)
-			shadow.paste(shadow_gradient, (width - edge_width * 2, 0))
+			shadow.paste(shadow_gradient, (width - shadow_width, 0))
+		
 		image = ImageChops.multiply(image, shadow)
 		return image
 
@@ -105,11 +110,18 @@ def apply_photocopy_effect(input_pdf_path, output_pdf_path):
 		scanlines = Image.new('L', (width, height), 255)
 		draw = ImageDraw.Draw(scanlines)
 
-		# Add horizontal scanlines
-		line_spacing = 3
-		for y in range(0, height, line_spacing):
-			intensity = np.random.randint(230, 255)  # Slightly darker lines
-			draw.line([(0, y), (width, y)], fill=intensity)
+		# Create clusters of scanlines
+		num_clusters = int(height * 0.002)  # Fewer clusters
+		for _ in range(num_clusters):
+			cluster_center = np.random.randint(0, height)
+			num_lines = np.random.randint(1, 21)  # 1-21 lines per cluster
+			line_spacing = 2  # Closer together
+			
+			for i in range(num_lines):
+				y = cluster_center + (i * line_spacing)
+				if 0 <= y < height:
+					intensity = np.random.randint(220, 250)  # Slightly darker lines
+					draw.line([(0, y), (width, y)], fill=intensity)
 
 		image = ImageChops.multiply(image, scanlines)
 		return image
