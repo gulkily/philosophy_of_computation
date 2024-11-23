@@ -1,3 +1,5 @@
+# begin compile_book.py
+
 import argparse
 import glob
 import os
@@ -131,3 +133,5 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
+# end compile_book.py
