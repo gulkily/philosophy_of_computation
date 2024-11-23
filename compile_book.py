@@ -25,6 +25,7 @@ def main():
 	parser = argparse.ArgumentParser(description="Generate a PDF book with optional testing mode.")
 	parser.add_argument('--test', action='store_true', help="Run in test mode (generate only the first 10 pages)")
 	parser.add_argument('--no-effect', action='store_true', help="Skip applying the photocopy effect")
+	parser.add_argument('--blank-cover', action='store_true', help="Use a blank cover page without image")
 	parser.add_argument('--font', choices=['garamond', 'times', 'dejavu', 'noto'],
 					   default='garamond', help="Choose the font family (default: garamond)")
 	args = parser.parse_args()
@@ -45,7 +46,7 @@ def main():
 		except Exception as e:
 			print(f"Error processing chapter {filename}: {e}")
 
-	pdf = PDFBook()
+	pdf = PDFBook(blank_cover=args.blank_cover)
 	pdf.font_preferences = []
 	fonts_loaded = False
 

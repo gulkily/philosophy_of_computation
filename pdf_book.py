@@ -6,7 +6,7 @@ from fpdf import FPDF, XPos, YPos
 from toc_entry import TOCEntry
 
 class PDFBook(FPDF):
-	def __init__(self):
+	def __init__(self, blank_cover=False):
 		super().__init__()
 		self.set_margins(30, 25, 30)  # Wider margins for a professional look
 		self.set_auto_page_break(auto=True, margin=25)
@@ -19,6 +19,7 @@ class PDFBook(FPDF):
 		self.is_toc_page = False
 		self.font_preferences = []  # Start empty, will be populated with successfully loaded fonts
 		self.active_font = None
+		self.blank_cover = blank_cover
 
 	def set_font_with_fallback(self, style, size, text=""):
 		if not self.active_font:
@@ -123,6 +124,9 @@ class PDFBook(FPDF):
 
 	def add_cover_page(self):
 		self.add_page()
+
+		if self.blank_cover:
+			return	
 
 		# Try SVG first, then fall back to JPG if SVG fails
 		try:
