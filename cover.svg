@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200">
+  <!-- Background -->
+  <rect width="800" height="1200" fill="#1a1a2e"/>
+  
+  <!-- Abstract Circuit Pattern -->
+  <g stroke="#4a5568" stroke-width="1" fill="none">
+    <path d="M100,200 L300,200 L300,400 L500,400 L500,600" />
+    <path d="M200,100 L200,300 L400,300 L400,500 L600,500" />
+    <path d="M150,250 L350,250 L350,450 L550,450" />
+    <circle cx="300" cy="200" r="5" fill="#4a5568"/>
+    <circle cx="400" cy="300" r="5" fill="#4a5568"/>
+    <circle cx="500" cy="400" r="5" fill="#4a5568"/>
+  </g>
+
+  <!-- Abstract Brain/Circuit Hybrid -->
+  <path d="M400,700 Q500,600 600,700 T800,700" stroke="#6366f1" stroke-width="2" fill="none"/>
+  <path d="M400,720 Q500,620 600,720 T800,720" stroke="#6366f1" stroke-width="2" fill="none"/>
+  <path d="M400,740 Q500,640 600,740 T800,740" stroke="#6366f1" stroke-width="2" fill="none"/>
+
+  <!-- Title Text -->
+  <text x="400" y="300" font-family="Arial" font-size="48" fill="#ffffff" text-anchor="middle">
+    Philosophy of
+  </text>
+  <text x="400" y="370" font-family="Arial" font-size="64" fill="#ffffff" text-anchor="middle" font-weight="bold">
+    Computation
+  </text>
+
+  <!-- Subtitle -->
+  <text x="400" y="450" font-family="Arial" font-size="24" fill="#9ca3af" text-anchor="middle">
+    An exploration of computational theory,
+  </text>
+  <text x="400" y="485" font-family="Arial" font-size="24" fill="#9ca3af" text-anchor="middle">
+    limits, and philosophy
+  </text>
+
+  <!-- Binary Code Effect -->
+  <text x="50" y="800" font-family="monospace" font-size="14" fill="#4a5568">
+    01001100 01101111 01100111 01101111 01110011
+  </text>
+  <text x="50" y="820" font-family="monospace" font-size="14" fill="#4a5568">
+    01010000 01101100 01100001 01110100 01101111
+  </text>
+
+  <!-- Abstract Geometric Elements -->
+  <g fill="#6366f1" opacity="0.1">
+    <circle cx="100" cy="900" r="40"/>
+    <circle cx="700" cy="900" r="40"/>
+    <rect x="300" y="880" width="40" height="40"/>
+    <rect x="500" y="880" width="40" height="40"/>
+  </g>
+
+  <!-- MIT Press -->
+  <text x="400" y="1100" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle">
+    MIT Press
+  </text>
+</svg>
