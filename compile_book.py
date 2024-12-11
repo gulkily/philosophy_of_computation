@@ -28,13 +28,26 @@ def main():
 	parser.add_argument('--blank-cover', action='store_true', help="Use a blank cover page without image")
 	parser.add_argument('--font', choices=['garamond', 'times', 'dejavu', 'noto'],
 					   default='garamond', help="Choose the font family (default: garamond)")
+	parser.add_argument('--chapters', type=str, help="Specify chapters to include (e.g. '1,3-5' for chapters 1,3,4,5)")
 	args = parser.parse_args()
+
+	# Parse chapter selection if specified
+	selected_chapters = set()
+	if args.chapters:
+		for part in args.chapters.split(','):
+			if '-' in part:
+				start, end = map(int, part.split('-'))
+				selected_chapters.update(range(start, end + 1))
+			else:
+				selected_chapters.add(int(part))
 
 	# Collect chapters
 	chapter_files = sorted([file for file in glob.glob("*.txt") if re.match(r'\d+_', file)])
 
 	chapters = []
 	for i, filename in enumerate(chapter_files, start=1):
+		if args.chapters and i not in selected_chapters:
+			continue
 		try:
 			with open(filename, "r", encoding="utf-8") as file:
 				title_line = file.readline().strip()
@@ -115,7 +128,20 @@ def main():
 			break
 		pdf.add_chapter(title, content)
 
-	output_pdf = "Philosophy_of_Computation_Book.pdf" if not args.test else "Philosophy_of_Computation_Book_TEST.pdf"
+	# Build output filename based on options
+	filename_parts = ["Philosophy_of_Computation"]
+	if args.test:
+		filename_parts.append("TEST")
+	if args.no_effect:
+		filename_parts.append("no_effect")
+	if args.blank_cover:
+		filename_parts.append("blank_cover")
+	if args.font != 'garamond':  # Only add if not using default font
+		filename_parts.append(args.font)
+	if args.chapters:
+		filename_parts.append(f"ch{args.chapters}")
+	
+	output_pdf = "_".join(filename_parts) + ".pdf"
 
 	try:
 		if args.no_effect:
