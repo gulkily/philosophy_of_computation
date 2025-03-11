@@ -1,5 +1,32 @@
 # begin photocopy_effect.py
 
+"""
+Photocopy Effect Generator
+
+This module applies a realistic photocopy effect to PDF documents, simulating the 
+imperfections and artifacts commonly seen in photocopied pages. The effect includes:
+
+Key Features:
+- Toner smudges and streaks that appear randomly
+- Page curl and binding effects based on odd/even pages
+- Dark edges and shadows around page borders
+- Realistic binding shadows with texture
+- Random noise and specks
+- Occasional scanlines
+- Brightness adjustments based on text density
+- Support for both monochrome and color modes
+
+The effect aims to create an authentic "photocopied book" appearance by carefully
+simulating the physical characteristics and imperfections of photocopied pages.
+Each page is processed individually with randomized variations to avoid repetitive
+patterns.
+
+Main function:
+apply_photocopy_effect(input_pdf_path, output_pdf_path, color_mode='mono')
+    - Processes a PDF file and applies the photocopy effect to each page
+    - color_mode can be 'mono' for black & white or 'color' for color copies
+"""
+
 import fitz
 from PIL import Image, ImageOps, ImageEnhance, ImageDraw, ImageFilter, ImageChops
 import numpy as np

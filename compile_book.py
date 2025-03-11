@@ -1,5 +1,37 @@
 # begin compile_book.py
 
+"""
+PDF Book Compiler
+
+This module compiles text files into a professionally formatted PDF book with optional
+photocopy effect. It handles font loading, chapter organization, and various output
+options.
+
+Key Features:
+- Flexible font selection with fallback system (Garamond, Times, DejaVu, Noto)
+- Optional photocopy effect to simulate photocopied pages
+- Test mode for quick previews (first 10 pages only)
+- Chapter selection for partial compilation
+- Configurable cover page (with or without image)
+- Robust font loading with multiple fallback options
+
+Code Structure:
+- Font handling:
+  - find_font_path(): Locates font files in standard locations
+  - Font loading logic with cascading fallbacks
+- Main compilation flow:
+  1. Parse command line arguments
+  2. Load and validate chapter files
+  3. Initialize PDFBook with font preferences
+  4. Generate cover and chapters
+  5. Apply optional photocopy effect
+  6. Output final PDF
+- Error handling:
+  - Font loading failures with graceful degradation
+  - File I/O error management
+  - Temporary file cleanup
+"""
+
 import argparse
 import glob
 import os

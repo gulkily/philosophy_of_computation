@@ -1,5 +1,38 @@
 # begin pdf_book.py
 
+"""
+PDFBook - A PDF book generation class built on FPDF
+
+This module provides functionality for generating PDF books with professional formatting,
+including chapters, table of contents, headers/footers, and Markdown-style text formatting.
+
+Key features:
+- Cover page generation with SVG/JPG support
+- Chapter organization with proper page numbering
+- Headers showing chapter titles
+- Footers with page numbers (Roman numerals for front matter)
+- Font fallback system for reliable text rendering
+- Markdown parsing for italic text
+- Image embedding support
+- Configurable margins and spacing
+
+Code structure:
+- PDFBook class inherits from FPDF
+- Font handling methods:
+  - set_font_with_fallback(): Manages font selection and fallback
+- Page structure methods:  
+  - header(): Renders page headers based on context
+  - footer(): Handles page numbering
+  - add_cover_page(): Creates cover with image and text
+- Content methods:
+  - add_chapter(): Processes chapter content with Markdown
+  - write_markdown_line(): Handles line-level Markdown
+  - parse_markdown(): Tokenizes Markdown syntax
+- Helper methods:
+  - convert_to_roman(): Generates Roman numerals
+  - is_first_page_of_section(): Detects section starts
+"""
+
 import os
 import re
 from fpdf import FPDF, XPos, YPos
